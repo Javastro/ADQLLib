@@ -1070,7 +1070,7 @@ public class TAPMetadata implements Iterable<TAPSchema>, VOSIResource, TAPResour
 	 * @since 2.0
 	 */
 	public enum STDSchema{
-		TAPSCHEMA("TAP_SCHEMA"), UPLOADSCHEMA("TAP_UPLOAD");
+		TAPSCHEMA("tap_schema"), UPLOADSCHEMA("tap_upload");
 
 		/** Real name of the schema. */
 		public final String label;
