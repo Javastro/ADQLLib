@@ -3,7 +3,7 @@ plugins {
 }
 
 // Describe the library:
-version = "2.4.4-beta"
+version = "2.4.4-SNAPSHOT"
 description = "Java library to set up a TAP service."
 
 // Name of the JAR name (which will be then suffixed by the version number):
