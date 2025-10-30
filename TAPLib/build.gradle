@@ -3,7 +3,7 @@ plugins {
 }
 
 // Describe the library:
-version = "2.4.4-SNAPSHOT"
+version = "2.4.5-SNAPSHOT"
 description = "Java library to set up a TAP service."
 
 // Name of the JAR name (which will be then suffixed by the version number):
@@ -37,7 +37,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'fr.unistra.cds' // Change this to the correct group
             artifactId = 'TAPlib' // Change this for each library
-            version = '2.4.4-SNAPSHOT'
+            version = '2.4.5-SNAPSHOT'
 
             from components.java
             pom {
