@@ -204,16 +204,16 @@
       SELECT * FROM some_table WHERE name ILIKE 'SUB%'
     </adql>
   </query>
-  <query uuid="bf28161e-ba04-49c0-bcf9-23da1678754e"> <!-- ADQL 2.1 documentation shows the example below using the '%'' mod operator which doesn't work -->
+  <query uuid="d8e22a28-7b72-454b-a6b3-e5eb7d3f30fa"> <!-- ADQL 2.1 documentation shows the example below using the '%'' mod operator which doesn't work -->
     <description>WITH to create a temporary value to use as a subquery</description>
     <adql valid="true" version="adql-2.1">
       WITH alpha_subset AS (SELECT * FROM alpha_source WHERE MOD(id,10) = 0) SELECT ra, dec FROM alpha_subset WHERE ra &gt; 10 AND ra &lt; 20
     </adql>
   </query>
-  <query uuid="6743416d-f105-42d9-86a8-932d5b84fe9c">
+  <query uuid="5b8d5547-5797-4661-a896-d0f9703a52fd">
     <description>Offsetting the results returned by n</description>
     <adql valid="true" version="adql-2.1">
-      SELECT * FROM some_table ORDER BY ra OFFSET 100
+      SELECT * FROM artifact ORDER BY contentLength OFFSET 10;
     </adql>
   </query>
   <!-- Optional Features - End -->
