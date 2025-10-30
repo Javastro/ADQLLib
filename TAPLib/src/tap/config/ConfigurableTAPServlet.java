@@ -122,7 +122,12 @@ public class ConfigurableTAPServlet extends HttpServlet {
 		ServiceConnection serviceConn = null;
 		try{
 			// Create the service connection:
-			serviceConn = new ConfigurableServiceConnection(tapConf, config.getServletContext().getRealPath(""));
+            String contextPath =  config.getServletContext().getRealPath("");
+            //Test contexts don't supply the base path
+            if (contextPath  == null || contextPath.trim().isEmpty()){
+                contextPath = System.getenv("VOLLT_BASE_PATH");
+            }
+            serviceConn = new ConfigurableServiceConnection(tapConf, contextPath);
 			// Create all the TAP resources:
 			tap = new TAP(serviceConn);
 		}catch(Exception ex){
