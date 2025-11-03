@@ -50,6 +50,7 @@ import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
@@ -344,10 +345,20 @@ public final class ConfigurableServiceConnection implements ServiceConnection {
 			return null;
 		}
 
+        // As file://some/resource is interpreted as a literal path on Linux based OS, catch URis upfront.
+        try {
+            URI uri = URI.create(filePath);
+            if (uri.getScheme() != null) {
+                throw new TAPException("Invalid file path for the property \"" + propertyName + "\": \"" + filePath + "\"! Please check the path format.");
+            }
+        }catch(IllegalArgumentException e) {
+            //Not a valid URI, continue to create a Path
+        }
+
 		// Convert the file path into a Path object to avoid manual checks
 		Path path;
 		try {
-			path = Paths.get(filePath);
+            path = Paths.get(filePath);
 		} catch (InvalidPathException e) {
 			throw new TAPException("Invalid file path for the property \"" + propertyName + "\": \"" + filePath + "\"! Please check the path format.", e);
 		}
