@@ -95,6 +95,11 @@ publishing {
                         name = 'Grégory Mantelet'
                         email = 'gregory.mantelet@astro.u-strasbg.fr'
                     }
+                    developer {
+                        id = 'slloyd-src'
+                        name = 'Stephen Lloyd'
+                        email = 'stephen.lloyd@manchester.ac.uk'
+                    }
                 }
                 scm {
                     connection = 'scm:git:git://github.com/gmantele/vollt.git'
@@ -103,5 +108,19 @@ publishing {
                 }
             }
         }
+    }
+    repositories {
+        maven {
+            name = "uksrcrepo"
+            credentials {
+                username = (findProperty("uksrcNexusUsername") ?: System.getenv("UKSRC_REPO_USERNAME"))
+                password = (findProperty("uksrcNexusPassword") ?: System.getenv("UKSRC_REPO_PASSWORD"))
+            }
+            def releasesRepoUrl = uri("https://repo.dev.uksrc.org/repository/maven-releases/")
+            def snapshotsRepoUrl = uri("https://repo.dev.uksrc.org/repository/maven-snapshots/")
+            url = uri((version.toString().endsWith("SNAPSHOT"))?  snapshotsRepoUrl : releasesRepoUrl)
+
+        }
+
     }
 }
