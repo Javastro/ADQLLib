@@ -21,3 +21,4 @@ sql/
 /UWSLib/service.log
 /UWSLib/tmp.empty
 /TAPLib/tmp.empty
+/UWSLib/service_*.log
