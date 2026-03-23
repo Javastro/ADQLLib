@@ -5,7 +5,7 @@ plugins {
 }
 
 // Describe the library:
-version = "2.0-SNAPSHOT"
+version = "2.1-SNAPSHOT"
 description = "Java library to parse, analyze and transform ADQL queries."
 
 // Name of the JAR name (which will be then suffixed by the version number):
@@ -17,7 +17,6 @@ distributions {
 }
 
 dependencies {
-    implementation 'uk.ac.starlink:stil:4.3.1'
     implementation 'postgresql:postgresql:9.1-901.jdbc4'
 }
 
@@ -71,7 +70,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'fr.unistra.cds' //FIXME - is this what is wanted?
             artifactId = 'ADQLlib'
-            version = '2.0-SNAPSHOT'
+            version = '2.1-SNAPSHOT'
 
             from components.java
             pom {
@@ -91,6 +90,11 @@ publishing {
                         name = 'Grégory Mantelet'
                         email = 'gregory.mantelet@astro.u-strasbg.fr'
                     }
+                    developer {
+                        id = 'slloyd-src'
+                        name = 'Stephen Lloyd'
+                        email = 'stephen.lloyd@manchester.ac.uk'
+                    }
                 }
                 scm {
                     connection = 'scm:git:git://github.com/gmantele/vollt.git'
@@ -102,12 +106,17 @@ publishing {
     }
     repositories {
         maven {
-            name = "nexus"
+            name = "uksrcrepo"
             url = uri("https://repo.dev.uksrc.org/repository/maven-snapshots/")
             credentials {
-                username = findProperty("nexusUsername") ?: System.getenv("NEXUS_USERNAME")
-                password = findProperty("nexusPassword") ?: System.getenv("NEXUS_PASSWORD")
+                username = (findProperty("uksrcNexusUsername") ?: System.getenv("UKSRC_REPO_USERNAME"))
+                password = (findProperty("uksrcNexusPassword") ?: System.getenv("UKSRC_REPO_PASSWORD"))
             }
+            def releasesRepoUrl = uri("https://repo.dev.uksrc.org/repository/maven-releases/")
+            def snapshotsRepoUrl = uri("https://repo.dev.uksrc.org/repository/maven-snapshots/")
+            url = uri((version.toString().endsWith("SNAPSHOT"))?  snapshotsRepoUrl : releasesRepoUrl)
+
         }
+
     }
 }
