@@ -1292,7 +1292,8 @@ public class TestADQLParser {
 
 		// TEST: unknown token => ParseException
 		try {
-			parser.tokenize("grégory", false);
+			//Using unicode character value (for é) to avoid platform-dependent encoding issues
+			parser.tokenize("gr\u00E9gory", false);
 			fail("No known token is provided. A ParseException was expected.");
 		} catch(Exception ex) {
 			assertEquals(ParseException.class, ex.getClass());

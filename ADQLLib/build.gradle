@@ -38,6 +38,10 @@ tasks.register('runnableJar', Jar) {
     exclude('adql/example/**')
 }
 
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
 /* ##########################################################################
  * # GRAMMAR CLASSES GENERATION (for ADQL-2.0 and 2.1)                      #
  * ########################################################################## */
