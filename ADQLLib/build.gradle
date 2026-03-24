@@ -5,7 +5,7 @@ plugins {
 }
 
 // Describe the library:
-version = "2.0-SNAPSHOT"
+version = "1.0-SNAPSHOT"
 description = "Java library to parse, analyze and transform ADQL queries."
 
 // Name of the JAR name (which will be then suffixed by the version number):
@@ -73,9 +73,9 @@ sourceSets.main.java.srcDirs = ["src", "examples", project.buildDir.absolutePath
 publishing {
     publications {
         maven(MavenPublication) {
-            groupId = 'fr.unistra.cds' //FIXME - is this what is wanted?
+            groupId = 'org.javastro.ivoa' // distinc
             artifactId = 'ADQLlib'
-            version = '2.0-SNAPSHOT'
+            version = '1.0-SNAPSHOT'
 
             from components.java
             pom {
@@ -102,8 +102,8 @@ publishing {
                     }
                 }
                 scm {
-                    connection = 'scm:git:git://github.com/gmantele/vollt.git'
-                    developerConnection = 'scm:git:ssh://github.com/gmantele/vollt.git'
+                    connection = 'scm:git:git://github.com/javastro/ADQLLib.git'
+                    developerConnection = 'scm:git:ssh://github.com/javastro/ADQLLib.git'
                     url = 'http://example.com/my-library/'
                 }
             }
