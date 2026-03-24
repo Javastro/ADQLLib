@@ -9,15 +9,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import adql.db.DBChecker;
-import adql.db.DBColumn;
+import adql.db.*;
 import adql.parser.ADQLParser;
 import org.junit.Before;
 import org.junit.Test;
 
-import adql.db.DBType;
 import adql.db.DBType.DBDatatype;
-import adql.db.FunctionDef;
 import adql.parser.grammar.ParseException;
 import adql.query.constraint.Comparison;
 import adql.query.constraint.ComparisonOperator;
@@ -51,8 +48,7 @@ import adql.search.IReplaceHandler;
 import adql.search.ISearchHandler;
 import adql.search.SearchColumnHandler;
 import adql.search.SimpleReplaceHandler;
-import tap.metadata.TAPColumn;
-import tap.metadata.TAPTable;
+
 
 public class TestADQLQuery {
 	private ADQLQuery query = null;
@@ -278,13 +274,13 @@ public class TestADQLQuery {
 		// Given...
 		// ...the table "flux":
 		final String TABLE_NAME = "flux";
-		final TAPTable tableFlux = new TAPTable(TABLE_NAME);
+		final DefaultDBTable tableFlux = new DefaultDBTable(TABLE_NAME);
 		// ...its only column "qual":
 		final String COLNAME = "qual";
-		final TAPColumn colQual = new TAPColumn(COLNAME);
+		final DefaultDBColumn colQual = new DefaultDBColumn(COLNAME,tableFlux);
 		tableFlux.addColumn(colQual);
 		// ...which gives a list of tables of only 1:
-		final ArrayList<TAPTable> lstTables = new ArrayList<>(1);
+		final ArrayList<DefaultDBTable> lstTables = new ArrayList<>(1);
 		lstTables.add(tableFlux);
 		// ...and finally creating the ADQL parser with this list:
 		final DBChecker dbChecker = new DBChecker(lstTables);
@@ -305,13 +301,13 @@ public class TestADQLQuery {
 		// Given...
 		// ...the table "flux":
 		final String TABLE_NAME = "flux";
-		final TAPTable tableFlux = new TAPTable(TABLE_NAME);
+		final DefaultDBTable tableFlux = new DefaultDBTable(TABLE_NAME);
 		// ...its only column "qual":
 		final String COLNAME = "qual";
-		final TAPColumn colQual = new TAPColumn(COLNAME);
+		final DefaultDBColumn colQual = new DefaultDBColumn(COLNAME,tableFlux);
 		tableFlux.addColumn(colQual);
 		// ...which gives a list of tables of only 1:
-		final ArrayList<TAPTable> lstTables = new ArrayList<>(1);
+		final ArrayList<DefaultDBTable> lstTables = new ArrayList<>(1);
 		lstTables.add(tableFlux);
 		// ...and finally creating the ADQL parser with this list:
 		final DBChecker dbChecker = new DBChecker(lstTables);
