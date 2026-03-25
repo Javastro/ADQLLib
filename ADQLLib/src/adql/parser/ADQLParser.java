@@ -307,6 +307,7 @@ public class ADQLParser {
 	 * serialization (e.g. DALI, STC/s). */
 	protected boolean extendedRegionExpressionAllowed = false;
 
+
 	/* **********************************************************************
 	   *                       VERSION MANAGEMENT                           *
 	   ********************************************************************** */
@@ -365,8 +366,8 @@ public class ADQLParser {
 	}
 
 	/** Version of the ADQL grammar to use when none is specified:
-	 * {@link ADQLVersion#V2_0 2.0}. */
-	public final static ADQLVersion DEFAULT_VERSION = ADQLVersion.V2_1; // TODO Move 2.1 as default when it becomes REC
+	 * {@link ADQLVersion#V2_1 2.1}. */
+	public final static ADQLVersion DEFAULT_VERSION = ADQLVersion.V2_1;
 
 	/**
 	 * Get the list of all supported ADQL grammar versions.
@@ -448,6 +449,16 @@ public class ADQLParser {
 	public ADQLParser(ADQLVersion version) {
 		this(version, null, null, null);
 	}
+
+
+	/**
+	 * Create a parser with the given checker. Uses the default ADQL version, the default set of supported features and the default query factory.
+	 * @param dbChecker The checker to use for checking the parsed queries. If NULL, no custom check will be performed.
+	 */
+	public ADQLParser(DBChecker dbChecker) {
+		this(DEFAULT_VERSION, dbChecker, null, null);
+	}
+
 
 	/**
 	 * Builds a parser whose the query to parse will have to be given as a
