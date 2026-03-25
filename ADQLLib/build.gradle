@@ -16,6 +16,11 @@ distributions {
     }
 }
 
+java {
+    withSourcesJar()
+}
+
+
 dependencies {
     implementation 'postgresql:postgresql:9.1-901.jdbc4'
 }
@@ -68,7 +73,10 @@ compileJavacc.doLast {
 // Ensure the generated Java classes and examples are included in the classpath:
 sourceSets.main.java.srcDirs = ["src", "examples", project.buildDir.absolutePath+'/generated']
 
-
+tasks.named("sourcesJar") {
+    mustRunAfter compileJavacc
+    mustRunAfter compileJava
+}
 publishing {
     publications {
         maven(MavenPublication) {
