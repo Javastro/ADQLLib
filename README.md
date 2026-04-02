@@ -10,8 +10,9 @@ It has been forked from the original [VOLLT repository](https://github.com/gmant
 
 - Isolate the ADQLLib library from the rest of the original VOLLT codebase and make it available as a standalone library
     - this allows easier maintenance and development of the ADQLLib library as PRs related to this library can be merged without having to merge the rest of the codebase
-- Allow the future development of the ADQLLib library to be driven by the needs of Javastro libraries.
-    - though it is still an aim to make ADQLLib a standalone library
+    - this also allows the ADQLLib to remain at a Java 8 compatibility level, whereas the recent developments in Java web frameworks "force" UWS and TAP implementations to be developed at a more recent Java version (i.e. post Java 9)
+- Allow publishing of the ADQLLib library on a public repository such as [Maven Central](https://search.maven.org/) to allow its easy use as a dependency in other projects
+    - In fact this library is currently published to the [UKSRC repository](https://repo.dev.uksrc.org/#browse/browse:maven-public:net%2Fivoa%2FADQLLib) - so that any projects wanting to use it would need to add this repository to their build configuration.
 
 
 # Build the library
